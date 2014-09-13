@@ -1,9 +1,20 @@
 Rails.application.routes.draw do
-  resources :skills
 
-  resources :educations
+  namespace :api do
+    namespace :v1 do
+      resources :user, except: [:dummy] do
+        resources :profil, only: [:index, :new, :create]
+        resources :educations, only: [:index, :new, :create]
+        resources :skils, only: [:index, :new, :create]
+      end
+    end
+  end
 
-  resources :profils
+  #resources :skills
+
+  #resources :educations
+
+  #resources :profils
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
