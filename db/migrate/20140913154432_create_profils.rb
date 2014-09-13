@@ -10,6 +10,7 @@ class CreateProfils < ActiveRecord::Migration
     	t.string :address
     	t.string :location
     end
+    add_index :profils, :id
   end
   def down
   	drop_table :profils
