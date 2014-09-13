@@ -7,35 +7,14 @@ module Api
       # GET /profils
       # GET /profils.json
       def index
-        @profils = Profil.all
-      end
-
-      # GET /profils/1
-      # GET /profils/1.json
-      def show
-        puts 'here\n'
         @profil = Profil.find(params[:user_id])
-        #render json: @profil
-        respond_to do |format|
-          format.json { render json: @res }
-        end
-
-      end
-
-      # GET /profils/new
-      def new
-        @profil = Profil.new
-      end
-
-      # GET /profils/1/edit
-      def edit
+        render json: @profil
       end
 
       # POST /profils
       # POST /profils.json
       def create
         @profil = Profil.new(profil_params)
-
         respond_to do |format|
           if @profil.save
             format.html { redirect_to @profil, notice: 'Profil was successfully created.' }
@@ -47,29 +26,7 @@ module Api
         end
       end
 
-      # PATCH/PUT /profils/1
-      # PATCH/PUT /profils/1.json
-      def update
-        respond_to do |format|
-          if @profil.update(profil_params)
-            format.html { redirect_to @profil, notice: 'Profil was successfully updated.' }
-            format.json { render :show, status: :ok, location: @profil }
-          else
-            format.html { render :edit }
-            format.json { render json: @profil.errors, status: :unprocessable_entity }
-          end
-        end
-      end
-
-      # DELETE /profils/1
-      # DELETE /profils/1.json
-      def destroy
-        @profil.destroy
-        respond_to do |format|
-          format.html { redirect_to profils_url, notice: 'Profil was successfully destroyed.' }
-          format.json { head :no_content }
-        end
-      end
+      
 
       private
         # Use callbacks to share common setup or constraints between actions.
